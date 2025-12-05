@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | JP Enterprises</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --navy-900: #020617;
+            --navy-800: #0f172a;
+            --blue-600: #2563eb;
+            --blue-400: #60a5fa;
+            --white: #ffffff;
+            --slate-100: #f1f5f9;
+            --slate-300: #cbd5e1;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --gradient-hero: linear-gradient(135deg, var(--navy-900) 0%, #1e3a8a 100%);
+            --shadow-card: 0 10px 30px -10px rgba(37, 99, 235, 0.15);
+            --shadow-hover: 0 20px 40px -10px rgba(37, 99, 235, 0.25);
+            --container-width: 1200px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--white); color: var(--text-dark); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; line-height: 1.2; }
+        .container { max-width: var(--container-width); margin: 0 auto; padding: 0 24px; }
+
+        /* HEADER */
+        header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--slate-100); position: sticky; top: 0; z-index: 1000; padding: 10px 0; }
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.4rem; color: var(--navy-900); letter-spacing: -0.02em; display: flex; align-items: center; gap: 8px; }
+        .logo i { color: var(--blue-600); }
+        nav ul { display: flex; list-style: none; gap: 28px; }
+        nav a { text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 0.9rem; transition: color 0.3s ease; }
+        nav a:hover, nav a.active { color: var(--blue-600); }
+        .cta-btn { background: var(--navy-900); color: var(--white); padding: 10px 20px; border-radius: 4px; text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: all 0.3s ease; border: 1px solid var(--navy-900); }
+        .cta-btn:hover { background: var(--blue-600); border-color: var(--blue-600); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); }
+        .mobile-menu-btn { display: none; font-size: 1.4rem; background: none; border: none; cursor: pointer; color: var(--navy-900); }
+        .mobile-nav { display: none; }
+
+        /* HERO */
+        .hero { position: relative; background: var(--gradient-hero); padding: 100px 0 80px; color: var(--white); overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; }
+        .hero-flex { display: flex; align-items: center; justify-content: space-between; gap: 60px; position: relative; z-index: 2; }
+        .hero-text { max-width: 650px; }
+        .hero-tag { display: inline-block; background: rgba(37, 99, 235, 0.2); border: 1px solid rgba(96, 165, 250, 0.3); color: var(--blue-400); padding: 5px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: 600; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 15px; letter-spacing: -0.03em; }
+        .hero p { font-size: 1.15rem; color: var(--slate-300); max-width: 600px; font-weight: 300; }
+
+        /* 3D CUBE ANIMATION */
+        .model-container { 
+            width: 300px; height: 300px; 
+            display: flex; justify-content: center; align-items: center; 
+            perspective: 1000px; 
+            cursor: grab;
+        }
+        .model-container:active { cursor: grabbing; }
+        .cube { 
+            width: 150px; height: 150px; 
+            position: relative; 
+            transform-style: preserve-3d; 
+            animation: spin 20s infinite linear;
+            transition: transform 0.1s ease-out;
+        }
+        .face { 
+            position: absolute; 
+            width: 150px; height: 150px; 
+            border: 2px solid var(--blue-400); 
+            background: rgba(37, 99, 235, 0.1); 
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.2) inset; 
+            display: flex; justify-content: center; align-items: center; 
+            backface-visibility: visible; 
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .face::before, .face::after { content: ''; position: absolute; background: var(--blue-400); opacity: 0.5; }
+        .face::before { width: 100%; height: 1px; transform: rotate(45deg); }
+        .face::after { width: 100%; height: 1px; transform: rotate(-45deg); }
+        .front  { transform: rotateY(0deg) translateZ(75px); }
+        .back   { transform: rotateY(180deg) translateZ(75px); }
+        .right  { transform: rotateY(90deg) translateZ(75px); }
+        .left   { transform: rotateY(-90deg) translateZ(75px); }
+        .top    { transform: rotateX(90deg) translateZ(75px); }
+        .bottom { transform: rotateX(-90deg) translateZ(75px); }
+        .cube.explode .face { background: rgba(37, 99, 235, 0.05); border-color: var(--blue-600); transform: translateZ(120px); }
+        .cube.explode .inner-cube { transform: scale(1.5); box-shadow: 0 0 50px var(--blue-400); }
+        .inner-cube { 
+            position: absolute; top: 50px; left: 50px; 
+            width: 50px; height: 50px; 
+            background: var(--blue-600); 
+            transform-style: preserve-3d; 
+            animation: spin-reverse 8s infinite linear; 
+            box-shadow: 0 0 30px var(--blue-400); 
+            transition: all 0.4s ease;
+        }
+        @keyframes spin { 0% { transform: rotateX(0deg) rotateY(0deg); } 100% { transform: rotateX(360deg) rotateY(360deg); } }
+        @keyframes spin-reverse { 0% { transform: rotateX(360deg) rotateY(360deg); } 100% { transform: rotateX(0deg) rotateY(0deg); } }
+
+        /* SECTIONS */
+        .section { padding: 60px 0; }
+        .grid-split { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .section-header { margin-bottom: 30px; }
+        .sub-head { color: var(--blue-600); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.8rem; margin-bottom: 8px; display: block; }
+        .section h2 { font-size: 2.2rem; color: var(--navy-900); margin-bottom: 15px; font-weight: 700; }
+        .text-block p { color: var(--text-light); margin-bottom: 20px; font-size: 1rem; }
+        .image-card { background: var(--slate-100); border-radius: 8px; position: relative; height: 400px; overflow: hidden; border: 1px solid var(--slate-300); display: flex; align-items: center; justify-content: center; }
+        .image-card i { font-size: 4rem; color: var(--slate-300); }
+        .bg-light { background: var(--slate-100); }
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+        .info-card { background: var(--white); padding: 30px 25px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.05); transition: all 0.4s ease; position: relative; top: 0; }
+        .info-card:hover { top: -5px; box-shadow: var(--shadow-hover); border-color: var(--blue-600); }
+        .icon-box { width: 50px; height: 50px; background: rgba(37, 99, 235, 0.1); color: var(--blue-600); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 20px; transition: 0.3s; }
+        .info-card:hover .icon-box { background: var(--blue-600); color: var(--white); }
+        .info-card h4 { font-size: 1.1rem; margin-bottom: 10px; color: var(--navy-900); }
+        .info-card p { color: var(--text-light); font-size: 0.9rem; }
+        .cert-section { background: var(--navy-900); padding: 40px 0; color: white; }
+        .cert-flex { display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; opacity: 0.8; }
+        .cert-item { display: flex; align-items: center; gap: 10px; font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 1rem; }
+        .cert-item i { color: var(--blue-400); font-size: 1.2rem; }
+        .values-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
+        .vision-box { background: var(--navy-900); color: var(--white); padding: 40px; border-radius: 8px; position: relative; overflow: hidden; }
+        .vision-box::after { content: ''; position: absolute; bottom: -50px; right: -50px; width: 180px; height: 180px; border-radius: 50%; background: var(--blue-600); opacity: 0.1; }
+        .vision-box h3 { color: var(--white); margin-bottom: 15px; font-size: 1.5rem; }
+        .vision-box p { color: var(--slate-300); margin-bottom: 25px; font-size: 0.95rem; }
+        .goal-item { display: flex; align-items: center; gap: 15px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .goal-year { font-weight: 700; color: var(--blue-400); font-family: 'Outfit', sans-serif; font-size: 0.9rem; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 40px; }
+        .stat-card { text-align: center; padding: 20px 15px; border-right: 1px solid var(--slate-300); }
+        .stat-card:last-child { border: none; }
+        .stat-number { font-size: 2.5rem; font-weight: 800; color: var(--blue-600); font-family: 'Outfit', sans-serif; line-height: 1; margin-bottom: 8px; }
+        .stat-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-light); font-weight: 600; }
+        footer { background: var(--navy-900); color: var(--white); padding: 50px 0 20px; }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 30px; margin-bottom: 40px; }
+        .footer h4 { margin-bottom: 15px; color: var(--blue-400); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; }
+        .footer ul { list-style: none; }
+        .footer li { margin-bottom: 8px; }
+        .footer a { color: var(--slate-300); text-decoration: none; font-size: 0.9rem; }
+        .footer a:hover { color: var(--white); }
+
+        @media (max-width: 900px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero-flex { flex-direction: column; text-align: center; }
+            .model-container { margin-top: -20px; transform: scale(0.8); }
+            .grid-split, .values-grid { grid-template-columns: 1fr; }
+            .stat-card { border-right: none; border-bottom: 1px solid var(--slate-300); padding-bottom: 15px; }
+            .nav-desktop { display: none; }
+            .mobile-menu-btn { display: block; }
+            .mobile-nav { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: white; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+            .mobile-nav.active { display: block; }
+            .mobile-nav ul { flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav-wrapper">
+            <div class="logo"><i class="fas fa-layer-group"></i> JP ENTERPRISES</div>
+            <nav class="nav-desktop">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" class="active">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="expertise.html">Expertise</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div style="display: flex; gap: 15px; align-items: center;">
+                <a href="quote.html" class="cta-btn nav-desktop">Request Quote</a>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+        <nav class="mobile-nav" id="mobileNav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="expertise.html">Expertise</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="quote.html" style="color: var(--blue-600); font-weight: 700;">Request Quote</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-flex">
+            <div class="hero-text">
+                <span class="hero-tag"><i class="fas fa-check-circle"></i> ISO 9001:2015 Certified</span>
+                <h1>Engineering the Future of Infrastructure</h1>
+                <p>Pioneering German standards in India's temporary structure landscape. We deliver precision, safety, and scalability for every project.</p>
+                <p style="font-size: 0.9rem; margin-top: 15px; color: var(--blue-400);"><i class="fas fa-mouse-pointer"></i> Interact with the model: Hover to rotate, Click to explode.</p>
+            </div>
+            
+            <div class="model-container" id="model3d">
+                <div class="cube" id="cube">
+                    <div class="face front"></div>
+                    <div class="face back"></div>
+                    <div class="face right"></div>
+                    <div class="face left"></div>
+                    <div class="face top"></div>
+                    <div class="face bottom"></div>
+                    <div class="inner-cube"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container grid-split">
+            <div class="text-block">
+                <span class="sub-head">Who We Are</span>
+                <h2>Building on Trust & Precision</h2>
+                <p>Founded with a vision to revolutionize India's infrastructure landscape, JP Enterprises has grown from a regional player to a PAN-India leader in German hangar structures and turnkey event solutions.</p>
+                <div style="margin-top: 25px;">
+                    <a href="#" style="color: var(--blue-600); font-weight: 600; text-decoration: none;">View Our Journey <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="image-card">
+                <div style="text-align: center;">
+                    <i class="fas fa-drafting-compass" style="font-size: 3.5rem; color: var(--blue-600); margin-bottom: 15px;"></i>
+                    <p style="color: var(--text-dark); font-weight: 600;">Precision Engineering</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-light">
+        <div class="container">
+            <div class="section-header" style="text-align: center;">
+                <span class="sub-head">Our Expertise</span>
+                <h2>The Team Behind The Structure</h2>
+            </div>
+            <div class="card-grid">
+                <div class="info-card">
+                    <div class="icon-box"><i class="fas fa-user-tie"></i></div>
+                    <h4>Leadership</h4>
+                    <p>Veterans with 20+ years of experience in civil engineering and event infrastructure management.</p>
+                </div>
+                <div class="info-card">
+                    <div class="icon-box"><i class="fas fa-hard-hat"></i></div>
+                    <h4>Technical Squad</h4>
+                    <p>100+ certified engineers and architects ensuring German precision in every bolt and beam.</p>
+                </div>
+                <div class="info-card">
+                    <div class="icon-box"><i class="fas fa-stopwatch"></i></div>
+                    <h4>Project Managers</h4>
+                    <p>Dedicated teams for rapid deployment, ensuring timelines are met with zero compromise.</p>
+                </div>
+                <div class="info-card">
+                    <div class="icon-box"><i class="fas fa-shield-alt"></i></div>
+                    <h4>Safety Officers</h4>
+                    <p>Specialized QA team enforcing rigorous safety protocols matching international standards.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="cert-section">
+        <div class="container cert-flex">
+            <div class="cert-item"><i class="fas fa-certificate"></i> German Standard DIN 4102</div>
+            <div class="cert-item"><i class="fas fa-globe-europe"></i> ISO 9001:2015</div>
+            <div class="cert-item"><i class="fas fa-leaf"></i> Eco-Friendly Compliant</div>
+            <div class="cert-item"><i class="fas fa-check-double"></i> Fire Safety Certified</div>
+        </div>
+    </div>
+
+    <section class="section">
+        <div class="container">
+            <div class="values-grid">
+                <div>
+                    <span class="sub-head">Our Impact</span>
+                    <h2>By The Numbers</h2>
+                    <p style="color: var(--text-light); max-width: 500px;">Our track record speaks for itself. We have consistently delivered excellence across industries and geographies.</p>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Projects</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">1M+</div>
+                            <div class="stat-label">Sq.ft Built</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Cities</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="vision-box">
+                    <h3><i class="fas fa-eye" style="color: var(--blue-400); margin-right: 10px;"></i> Our Vision</h3>
+                    <p>To be India's most trusted infrastructure solutions provider, setting new benchmarks in quality and expanding to global markets.</p>
+                    <div class="goal-item">
+                        <span class="goal-year">2025</span>
+                        <span style="font-size: 0.9rem;">Expand to 100+ Tier-2 Cities</span>
+                    </div>
+                    <div class="goal-item">
+                        <span class="goal-year">2026</span>
+                        <span style="font-size: 0.9rem;">Launch International Division</span>
+                    </div>
+                    <div class="goal-item" style="border: none;">
+                        <span class="goal-year">2027</span>
+                        <span style="font-size: 0.9rem;">Carbon Neutral Operations</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer">
+                <div class="logo" style="color: white; margin-bottom: 20px;">
+                    <i class="fas fa-layer-group" style="color: var(--blue-400);"></i> JP ENTERPRISES
+                </div>
+                <p style="color: var(--slate-300); max-width: 300px;">Providing scalable, safe, and sustainable infrastructure solutions that empower events and businesses.</p>
+            </div>
+            <div class="footer">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Projects</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="#">info@jpenterprises.com</a></li>
+                    <li><a href="#">+91 98765 43210</a></li>
+                    <li><a href="#">Mumbai, India</a></li>
+                </ul>
+                <div style="margin-top: 20px;">
+                    <a href="#" style="margin-right: 15px;"><i class="fab fa-linkedin fa-lg"></i></a>
+                    <a href="#" style="margin-right: 15px;"><i class="fab fa-twitter fa-lg"></i></a>
+                    <a href="#"><i class="fab fa-instagram fa-lg"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="container" style="text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+            <p style="font-size: 0.85rem; color: var(--text-light);">© 2024 JP Enterprises. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const nav = document.getElementById('mobileNav');
+            nav.classList.toggle('active');
+        }
+
+        // --- INTERACTIVE 3D MODEL LOGIC ---
+        const container = document.getElementById('model3d');
+        const cube = document.getElementById('cube');
+        let isHovering = false;
+
+        // Mouse Move Effect (Rotates cube based on cursor position)
+        container.addEventListener('mousemove', (e) => {
+            const rect = container.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Calculate rotation values based on mouse position
+            // Center of container is (0,0) rotation
+            const rotateY = ((x / rect.width) - 0.5) * 180; // Range: -90 to 90 deg
+            const rotateX = -((y / rect.height) - 0.5) * 180; // Range: -90 to 90 deg
+
+            // Stop auto-spin and apply manual rotation
+            cube.style.animation = 'none';
+            cube.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            isHovering = true;
+        });
+
+        // Mouse Leave (Resume Auto Spin)
+        container.addEventListener('mouseleave', () => {
+            cube.style.animation = 'spin 20s infinite linear';
+            cube.style.transform = ''; // Clear inline styles
+            isHovering = false;
+            // Also ensure explode class is removed if they leave while holding down
+            cube.classList.remove('explode');
+        });
+
+        // Click to Explode
+        container.addEventListener('mousedown', () => {
+            cube.classList.add('explode');
+        });
+
+        // Release to Collapse
+        container.addEventListener('mouseup', () => {
+            cube.classList.remove('explode');
+        });
+
+        // Touch support for mobile devices
+        container.addEventListener('touchstart', () => {
+             cube.classList.add('explode');
+        });
+        container.addEventListener('touchend', () => {
+             cube.classList.remove('explode');
+        });
+
+    </script>
+</body>
+</html>

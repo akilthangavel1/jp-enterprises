@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Gallery | JP Enterprises - Infrastructure Showcase</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --navy-900: #020617;
+            --navy-800: #0f172a;
+            --blue-600: #2563eb;
+            --blue-400: #60a5fa;
+            --white: #ffffff;
+            --slate-100: #f1f5f9;
+            --slate-300: #cbd5e1;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --gradient-hero: linear-gradient(135deg, var(--navy-900) 0%, #1e3a8a 100%);
+            --shadow-card: 0 10px 30px -10px rgba(37, 99, 235, 0.15);
+            --shadow-hover: 0 20px 40px -10px rgba(37, 99, 235, 0.25);
+            --container-width: 1200px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--white); color: var(--text-dark); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; line-height: 1.2; }
+        .container { max-width: var(--container-width); margin: 0 auto; padding: 0 24px; }
+
+        /* HEADER */
+        header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--slate-100); position: sticky; top: 0; z-index: 1000; padding: 10px 0; }
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.4rem; color: var(--navy-900); letter-spacing: -0.02em; display: flex; align-items: center; gap: 8px; }
+        .logo i { color: var(--blue-600); }
+        nav ul { display: flex; list-style: none; gap: 28px; }
+        nav a { text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 0.9rem; transition: color 0.3s ease; }
+        nav a:hover, nav a.active { color: var(--blue-600); }
+        .cta-btn { background: var(--navy-900); color: var(--white); padding: 10px 20px; border-radius: 4px; text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: all 0.3s ease; border: 1px solid var(--navy-900); }
+        .cta-btn:hover { background: var(--blue-600); border-color: var(--blue-600); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); }
+        .mobile-menu-btn { display: none; font-size: 1.4rem; background: none; border: none; cursor: pointer; color: var(--navy-900); }
+        .mobile-nav { display: none; }
+
+        /* PAGE HERO */
+        .page-hero { position: relative; background: var(--gradient-hero); padding: 80px 0 60px; color: var(--white); overflow: hidden; }
+        .page-hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; }
+        .hero-content { position: relative; z-index: 2; text-align: center; }
+        .hero-tag { display: inline-block; background: rgba(37, 99, 235, 0.2); border: 1px solid rgba(96, 165, 250, 0.3); color: var(--blue-400); padding: 5px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: 600; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .page-hero h1 { font-size: 2.8rem; font-weight: 700; margin-bottom: 15px; letter-spacing: -0.03em; }
+        .page-hero p { font-size: 1.15rem; color: var(--slate-300); max-width: 600px; font-weight: 300; margin: 0 auto; }
+
+        /* SECTIONS */
+        .section { padding: 60px 0; }
+        .section-header { margin-bottom: 50px; text-align: center; }
+        .sub-head { color: var(--blue-600); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.8rem; margin-bottom: 8px; display: block; }
+        .section h2 { font-size: 2.2rem; color: var(--navy-900); margin-bottom: 15px; font-weight: 700; }
+        .bg-light { background: var(--slate-100); }
+
+        /* GALLERY SPECIFIC STYLES */
+        .gallery-filters { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap; }
+        .filter-btn { background: var(--white); color: var(--text-dark); border: 1px solid var(--slate-300); padding: 10px 20px; border-radius: 4px; font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: all 0.3s ease; }
+        .filter-btn:hover, .filter-btn.active { background: var(--blue-600); color: var(--white); border-color: var(--blue-600); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .gallery-item { opacity: 1; transform: scale(1); transition: all 0.3s ease; }
+        .gallery-card { background: var(--white); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-card); transition: all 0.4s ease; border: 1px solid rgba(0,0,0,0.05); }
+        .gallery-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+        .gallery-image { position: relative; height: 250px; background: var(--slate-100); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .gallery-image i { font-size: 3rem; color: var(--slate-300); z-index: 1; }
+        .image-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); opacity: 0; transition: all 0.3s ease; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: var(--white); padding: 20px; }
+        .gallery-card:hover .image-overlay { opacity: 1; }
+        .image-overlay h4 { font-size: 1.2rem; margin-bottom: 8px; font-weight: 600; }
+        .image-overlay p { font-size: 0.9rem; margin-bottom: 15px; color: var(--slate-300); }
+        .project-type { background: var(--blue-600); color: var(--white); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+        .gallery-info { padding: 25px 20px; }
+        .gallery-info h4 { font-size: 1.1rem; color: var(--navy-900); margin-bottom: 10px; font-weight: 600; }
+        .gallery-info p { color: var(--text-light); font-size: 0.9rem; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
+        .project-specs { display: flex; gap: 20px; flex-wrap: wrap; }
+        .project-specs span { color: var(--text-light); font-size: 0.8rem; display: flex; align-items: center; gap: 6px; }
+        .project-specs i { color: var(--blue-600); }
+
+        /* STATS */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 40px; }
+        .stat-card { text-align: center; padding: 20px 15px; border-right: 1px solid var(--slate-300); }
+        .stat-card:last-child { border: none; }
+        .stat-number { font-size: 2.5rem; font-weight: 800; color: var(--blue-600); font-family: 'Outfit', sans-serif; line-height: 1; margin-bottom: 8px; }
+        .stat-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-light); font-weight: 600; }
+
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 900px) {
+            .page-hero h1 { font-size: 2.2rem; }
+            .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+            .stat-card { border-right: none; border-bottom: 1px solid var(--slate-300); padding-bottom: 15px; }
+            .nav-desktop { display: none; }
+            .mobile-menu-btn { display: block; }
+            .mobile-nav { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: white; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+            .mobile-nav.active { display: block; }
+            .mobile-nav ul { flex-direction: column; gap: 15px; }
+            .gallery-filters { justify-content: flex-start; }
+            .project-specs { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav-wrapper">
+            <div class="logo"><i class="fas fa-layer-group"></i> JP ENTERPRISES</div>
+            <nav class="nav-desktop">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="expertise.html">Expertise</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="gallery.html" class="active">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div style="display: flex; gap: 15px; align-items: center;">
+                <a href="quote.html" class="cta-btn nav-desktop">Request Quote</a>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+        <nav class="mobile-nav" id="mobileNav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="expertise.html">Expertise</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="quote.html" style="color: var(--blue-600); font-weight: 700;">Request Quote</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-hero">
+        <div class="container hero-content">
+            <span class="hero-tag"><i class="fas fa-camera"></i> Project Showcase</span>
+            <h1>Our Project Gallery</h1>
+            <p>Explore our extensive portfolio of German hangar structures, event infrastructures, and custom installations delivered across India.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="sub-head">Featured Projects</span>
+                <h2>Recent Installations</h2>
+            </div>
+            
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="hangars">German Hangars</button>
+                <button class="filter-btn" data-filter="events">Events</button>
+                <button class="filter-btn" data-filter="industrial">Industrial</button>
+                <button class="filter-btn" data-filter="weddings">Weddings</button>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item" data-category="hangars">
+                    <div class="gallery-card">
+                        <div class="gallery-image">
+                            <i class="fas fa-warehouse"></i>
+                            <div class="image-overlay">
+                                <h4>Premium Hangar - Mumbai</h4>
+                                <p>50m x 80m German aluminum structure</p>
+                                <span class="project-type">German Hangar</span>
+                            </div>
+                        </div>
+                        <div class="gallery-info">
+                            <h4>Corporate Aviation Hangar</h4>
+                            <p><i class="fas fa-map-marker-alt"></i> Mumbai, Maharashtra</p>
+                            <div class="project-specs">
+                                <span><i class="fas fa-expand-arrows-alt"></i> 4,000 sq.ft</span>
+                                <span><i class="fas fa-calendar"></i> 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="events">
+                    <div class="gallery-card">
+                        <div class="gallery-image">
+                            <i class="fas fa-glass-cheers"></i>
+                            <div class="image-overlay">
+                                <h4>Corporate Gala - Bangalore</h4>
+                                <p>Elegant transparent hangar setup</p>
+                                <span class="project-type">Corporate Event</span>
+                            </div>
+                        </div>
+                        <div class="gallery-info">
+                            <h4>Tech Company Annual Event</h4>
+                            <p><i class="fas fa-map-marker-alt"></i> Bangalore, Karnataka</p>
+                            <div class="project-specs">
+                                <span><i class="fas fa-users"></i> 800 guests</span>
+                                <span><i class="fas fa-calendar"></i> 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="weddings">
+                    <div class="gallery-card">
+                        <div class="gallery-image">
+                            <i class="fas fa-heart"></i>
+                            <div class="image-overlay">
+                                <h4>Grand Wedding - Delhi</h4>
+                                <p>Luxury wedding venue setup</p>
+                                <span class="project-type">Wedding</span>
+                            </div>
+                        </div>
+                        <div class="gallery-info">
+                            <h4>Destination Wedding Venue</h4>
+                            <p><i class="fas fa-map-marker-alt"></i> New Delhi</p>
+                            <div class="project-specs">
+                                <span><i class="fas fa-users"></i> 1,200 guests</span>
+                                <span><i class="fas fa-calendar"></i> 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="industrial">
+                    <div class="gallery-card">
+                        <div class="gallery-image">
+                            <i class="fas fa-industry"></i>
+                            <div class="image-overlay">
+                                <h4>Manufacturing Facility</h4>
+                                <p>Large-scale industrial warehouse</p>
+                                <span class="project-type">Industrial</span>
+                            </div>
+                        </div>
+                        <div class="gallery-info">
+                            <h4>Automotive Parts Warehouse</h4>
+                            <p><i class="fas fa-map-marker-alt"></i> Chennai, Tamil Nadu</p>
+                            <div class="project-specs">
+                                <span><i class="fas fa-expand-arrows-alt"></i> 25,000 sq.ft</span>
+                                <span><i class="fas fa-calendar"></i> 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="hangars">
+                    <div class="gallery-card">
+                        <div class="gallery-image">
+                            <i class="fas fa-plane"></i>
+                            <div class="image-overlay">
+                                <h4>Aircraft Maintenance Hangar</h4>
+                                <p>Military-grade specifications</p>
+                                <span class="project-type">Aviation</span>
+                            </div>
+                        </div>
+                        <div class="gallery-info">
+                            <h4>Defense Aviation Facility</h4>
+                            <p><i class="fas fa-map-marker-alt"></i> Pune, Maharashtra</p>
+                            <div class="project-specs">
+                                <span><i class="fas fa-expand-arrows-alt"></i> 15,000 sq.ft</span>
+                                <span><i class="fas fa-calendar"></i> 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="events">
+                    <div class="gallery-card">
+                        <div class="gallery-image">
+                            <i class="fas fa-microphone-alt"></i>
+                            <div class="image-overlay">
+                                <h4>Music Festival - Goa</h4>
+                                <p>Multi-stage event setup</p>
+                                <span class="project-type">Festival</span>
+                            </div>
+                        </div>
+                        <div class="gallery-info">
+                            <h4>Sunburn Music Festival</h4>
+                            <p><i class="fas fa-map-marker-alt"></i> Goa</p>
+                            <div class="project-specs">
+                                <span><i class="fas fa-users"></i> 5,000+ guests</span>
+                                <span><i class="fas fa-calendar"></i> 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="weddings">
+                    <div class="gallery-card">
+                        <div class="gallery-image">
+                            <i class="fas fa-ring"></i>
+                            <div class="image-overlay">
+                                <h4>Beach Wedding - Kerala</h4>
+                                <p>Transparent hangar beach setup</p>
+                                <span class="project-type">Destination Wedding</span>
+                            </div>
+                        </div>
+                        <div class="gallery-info">
+                            <h4>Luxury Beach Wedding</h4>
+                            <p><i class="fas fa-map-marker-alt"></i> Kovalam, Kerala</p>
+                            <div class="project-specs">
+                                <span><i class="fas fa-users"></i> 300 guests</span>
+                                <span><i class="fas fa-calendar"></i> 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="industrial">
+                    <div class="gallery-card">
+                        <div class="gallery-image">
+                            <i class="fas fa-boxes"></i>
+                            <div class="image-overlay">
+                                <h4>Logistics Hub - Hyderabad</h4>
+                                <p>Multi-bay warehouse complex</p>
+                                <span class="project-type">Logistics</span>
+                            </div>
+                        </div>
+                        <div class="gallery-info">
+                            <h4>E-commerce Fulfillment Center</h4>
+                            <p><i class="fas fa-map-marker-alt"></i> Hyderabad, Telangana</p>
+                            <div class="project-specs">
+                                <span><i class="fas fa-expand-arrows-alt"></i> 50,000 sq.ft</span>
+                                <span><i class="fas fa-calendar"></i> 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="events">
+                    <div class="gallery-card">
+                        <div class="gallery-image">
+                            <i class="fas fa-tv"></i>
+                            <div class="image-overlay">
+                                <h4>Trade Exhibition - Gujarat</h4>
+                                <p>Large exhibition hall setup</p>
+                                <span class="project-type">Exhibition</span>
+                            </div>
+                        </div>
+                        <div class="gallery-info">
+                            <h4>Vibrant Gujarat Summit</h4>
+                            <p><i class="fas fa-map-marker-alt"></i> Ahmedabad, Gujarat</p>
+                            <div class="project-specs">
+                                <span><i class="fas fa-expand-arrows-alt"></i> 30,000 sq.ft</span>
+                                <span><i class="fas fa-calendar"></i> 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <span class="sub-head">Our Capabilities</span>
+                <h2>Project Statistics</h2>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Cities Covered</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1M+</div>
+                    <div class="stat-label">Sq.ft Delivered</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Industries Served</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleMobileMenu() {
+            const nav = document.getElementById('mobileNav');
+            nav.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileNav = document.getElementById('mobileNav');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (!mobileNav.contains(event.target) && !menuBtn.contains(event.target)) {
+                mobileNav.classList.remove('active');
+            }
+        });
+
+        // Close mobile menu when window is resized to desktop
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 900) {
+                document.getElementById('mobileNav').classList.remove('active');
+            }
+        });
+
+        // Gallery filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    btn.classList.add('active');
+
+                    const filter = btn.getAttribute('data-filter');
+
+                    galleryItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                            setTimeout(() => {
+                                item.style.opacity = '1';
+                                item.style.transform = 'scale(1)';
+                            }, 10);
+                        } else {
+                            item.style.opacity = '0';
+                            item.style.transform = 'scale(0.8)';
+                            setTimeout(() => {
+                                item.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

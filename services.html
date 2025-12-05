@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | JP Enterprises - German Infrastructure Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --navy-900: #020617;
+            --navy-800: #0f172a;
+            --blue-600: #2563eb;
+            --blue-400: #60a5fa;
+            --white: #ffffff;
+            --slate-100: #f1f5f9;
+            --slate-300: #cbd5e1;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --gradient-hero: linear-gradient(135deg, var(--navy-900) 0%, #1e3a8a 100%);
+            --shadow-card: 0 10px 30px -10px rgba(37, 99, 235, 0.15);
+            --shadow-hover: 0 20px 40px -10px rgba(37, 99, 235, 0.25);
+            --container-width: 1200px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--white); color: var(--text-dark); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; line-height: 1.2; }
+        .container { max-width: var(--container-width); margin: 0 auto; padding: 0 24px; }
+
+        /* HEADER */
+        header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--slate-100); position: sticky; top: 0; z-index: 1000; padding: 10px 0; }
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.4rem; color: var(--navy-900); letter-spacing: -0.02em; display: flex; align-items: center; gap: 8px; }
+        .logo i { color: var(--blue-600); }
+        nav ul { display: flex; list-style: none; gap: 28px; }
+        nav a { text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 0.9rem; transition: color 0.3s ease; }
+        nav a:hover, nav a.active { color: var(--blue-600); }
+        .cta-btn { background: var(--navy-900); color: var(--white); padding: 10px 20px; border-radius: 4px; text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: all 0.3s ease; border: 1px solid var(--navy-900); }
+        .cta-btn:hover { background: var(--blue-600); border-color: var(--blue-600); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); }
+        .mobile-menu-btn { display: none; font-size: 1.4rem; background: none; border: none; cursor: pointer; color: var(--navy-900); }
+        .mobile-nav { display: none; }
+
+        /* PAGE HERO */
+        .page-hero { position: relative; background: var(--gradient-hero); padding: 100px 0 80px; color: var(--white); overflow: hidden; text-align: center; }
+        .page-hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; }
+        .hero-content { position: relative; z-index: 2; }
+        .hero-tag { display: inline-block; background: rgba(37, 99, 235, 0.2); border: 1px solid rgba(96, 165, 250, 0.3); color: var(--blue-400); padding: 5px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: 600; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .page-hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 15px; letter-spacing: -0.03em; }
+        .page-hero p { font-size: 1.15rem; color: var(--slate-300); max-width: 700px; font-weight: 300; margin: 0 auto; }
+
+        /* SECTIONS */
+        .section { padding: 60px 0; }
+        .section-header { margin-bottom: 50px; text-align: center; }
+        .sub-head { color: var(--blue-600); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.8rem; margin-bottom: 8px; display: block; }
+        .section h2 { font-size: 2.2rem; color: var(--navy-900); margin-bottom: 15px; font-weight: 700; }
+        .bg-light { background: var(--slate-100); }
+
+        /* SERVICE CARDS */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .service-card { background: var(--white); padding: 30px 25px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.05); transition: all 0.4s ease; }
+        .service-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); border-color: var(--blue-600); }
+        .service-card.featured { border: 2px solid var(--blue-600); position: relative; }
+        .service-card.featured::before { content: 'POPULAR'; position: absolute; top: -10px; right: 20px; background: var(--blue-600); color: var(--white); padding: 4px 12px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; }
+        .service-icon { width: 50px; height: 50px; background: rgba(37, 99, 235, 0.1); color: var(--blue-600); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 20px; }
+        .service-card h3 { font-size: 1.3rem; color: var(--navy-900); margin-bottom: 15px; font-weight: 600; }
+        .service-card p { color: var(--text-light); margin-bottom: 15px; }
+        .service-features h4 { font-size: 1rem; color: var(--navy-900); margin: 15px 0 10px 0; }
+        .service-features ul { list-style: none; }
+        .service-features li { padding: 3px 0; font-size: 0.85rem; position: relative; padding-left: 20px; }
+        .service-features li:before { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; left: 0; color: var(--blue-600); }
+        .service-specs { display: flex; gap: 15px; margin: 15px 0; flex-wrap: wrap; }
+        .service-specs span { background: var(--slate-100); padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; color: var(--text-dark); }
+        .service-btn { display: inline-block; background: var(--navy-900); color: var(--white); padding: 8px 16px; border-radius: 4px; text-decoration: none; font-size: 0.85rem; font-weight: 600; margin-top: 10px; transition: all 0.3s ease; }
+        .service-btn:hover { background: var(--blue-600); transform: translateY(-1px); }
+
+        /* PROCESS GRID */
+        .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .process-step { background: var(--white); padding: 30px; border-radius: 8px; box-shadow: var(--shadow-card); position: relative; }
+        .step-number { position: absolute; top: -15px; left: 30px; background: var(--blue-600); color: var(--white); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; }
+        .step-content h4 { color: var(--navy-900); font-size: 1.2rem; margin-bottom: 10px; margin-top: 10px; }
+        .step-content p { color: var(--text-light); margin-bottom: 15px; }
+        .step-features { display: flex; gap: 10px; flex-wrap: wrap; }
+        .step-features span { background: var(--slate-100); padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; color: var(--text-dark); }
+
+        .industry-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .industry-card { background: var(--white); padding: 25px 20px; border-radius: 8px; text-align: center; border: 1px solid var(--slate-100); transition: all 0.3s ease; }
+        .industry-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card); border-color: var(--blue-600); }
+        .industry-icon { width: 50px; height: 50px; background: rgba(37, 99, 235, 0.1); color: var(--blue-600); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin: 0 auto 15px; }
+        .industry-card h4 { color: var(--navy-900); font-size: 1rem; margin-bottom: 8px; }
+        .industry-card p { color: var(--text-light); font-size: 0.85rem; margin-bottom: 10px; }
+        .industry-projects { background: var(--blue-600); color: var(--white); padding: 4px 10px; border-radius: 12px; font-size: 0.8rem; font-weight: 600; display: inline-block; }
+
+        .value-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .value-card { background: var(--white); padding: 25px; border-radius: 8px; border: 1px solid var(--slate-100); transition: all 0.3s ease; }
+        .value-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card); border-color: var(--blue-600); }
+        .value-icon { width: 50px; height: 50px; background: rgba(37, 99, 235, 0.1); color: var(--blue-600); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 15px; }
+        .value-card h4 { color: var(--navy-900); font-size: 1.1rem; margin-bottom: 8px; }
+        .value-card p { color: var(--text-light); font-size: 0.85rem; }
+
+        .btn-primary { background: var(--navy-900); color: var(--white); padding: 12px 24px; border-radius: 4px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease; border: 1px solid var(--navy-900); display: inline-block; }
+        .btn-primary:hover { background: var(--blue-600); border-color: var(--blue-600); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); }
+        .btn-secondary { background: transparent; color: var(--white); border: 2px solid var(--white); padding: 10px 22px; border-radius: 4px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease; display: inline-block; }
+        .btn-secondary:hover { background: var(--white); color: var(--navy-900); transform: translateY(-2px); }
+
+        @media (max-width: 900px) {
+            .page-hero h1 { font-size: 2.2rem; }
+            .nav-desktop { display: none; }
+            .mobile-menu-btn { display: block; }
+            .mobile-nav { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: white; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+            .mobile-nav.active { display: block; }
+            .mobile-nav ul { flex-direction: column; gap: 15px; }
+        }
+        @media (max-width: 640px) {
+            .services-grid { grid-template-columns: 1fr; }
+            .process-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav-wrapper">
+            <div class="logo"><i class="fas fa-layer-group"></i> JP ENTERPRISES</div>
+            <nav class="nav-desktop">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html" class="active">Services</a></li>
+                    <li><a href="expertise.html">Expertise</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div style="display: flex; gap: 15px; align-items: center;">
+                <a href="quote.html" class="cta-btn nav-desktop">Request Quote</a>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+        <nav class="mobile-nav" id="mobileNav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="expertise.html">Expertise</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="quote.html" style="color: var(--blue-600); font-weight: 700;">Request Quote</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-hero">
+        <div class="container hero-content">
+            <span class="hero-tag"><i class="fas fa-tools"></i> Premium Solutions</span>
+            <h1>Comprehensive Infrastructure Services</h1>
+            <p>From German hangar structures to complete event solutions - we deliver world-class infrastructure services tailored to your specific requirements across India.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="sub-head">Our Core Services</span>
+                <h2>What We Deliver</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card featured">
+                    <div class="service-icon"><i class="fas fa-warehouse"></i></div>
+                    <h3>German Hangar Structures</h3>
+                    <p>Premium aluminum hangar systems engineered to German standards with complete customization options.</p>
+                    <div class="service-features">
+                        <h4>Key Features:</h4>
+                        <ul>
+                            <li>6m-50m widths, scalable to 300m</li>
+                            <li>Weather-resistant aluminum systems</li>
+                            <li>Climate-controlled interiors</li>
+                            <li>Custom branding & furnishings</li>
+                            <li>100% clear-span design</li>
+                            <li>Rapid deployment capability</li>
+                        </ul>
+                    </div>
+                    <div class="service-specs">
+                        <span><i class="fas fa-clock"></i> 7-14 days delivery</span>
+                        <span><i class="fas fa-shield-alt"></i> 10-year warranty</span>
+                    </div>
+                    <a href="contact.html" class="service-btn">Get Quote</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-hammer"></i></div>
+                    <h3>Pre-Fabricated Buildings</h3>
+                    <p>Temporary and semi-permanent tubular structures for industrial, commercial, and residential applications.</p>
+                    <div class="service-features">
+                        <h4>Applications:</h4>
+                        <ul>
+                            <li>Industrial warehouses</li>
+                            <li>Commercial spaces</li>
+                            <li>Temporary offices</li>
+                            <li>Storage facilities</li>
+                            <li>Workshop enclosures</li>
+                            <li>Equipment shelters</li>
+                        </ul>
+                    </div>
+                    <div class="service-specs">
+                        <span><i class="fas fa-expand-arrows-alt"></i> 1,600-200,000 sq.ft</span>
+                        <span><i class="fas fa-recycle"></i> Relocatable design</span>
+                    </div>
+                    <a href="contact.html" class="service-btn">Learn More</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-cube"></i></div>
+                    <h3>Temporary Installations</h3>
+                    <p>Custom-built temporary structures designed for specific short-term and medium-term requirements.</p>
+                    <div class="service-features">
+                        <h4>Solutions Include:</h4>
+                        <ul>
+                            <li>Dining & kitchen facilities</li>
+                            <li>Labor accommodation</li>
+                            <li>Site offices & meeting rooms</li>
+                            <li>Equipment storage</li>
+                            <li>Security checkpoints</li>
+                            <li>Emergency shelters</li>
+                        </ul>
+                    </div>
+                    <div class="service-specs">
+                        <span><i class="fas fa-tools"></i> Custom design</span>
+                        <span><i class="fas fa-shipping-fast"></i> Quick installation</span>
+                    </div>
+                    <a href="contact.html" class="service-btn">Explore Options</a>
+                </div>
+
+                <div class="service-card featured">
+                    <div class="service-icon"><i class="fas fa-microphone-alt"></i></div>
+                    <h3>Turnkey Event Solutions</h3>
+                    <p>Complete end-to-end event management and infrastructure setup for all types of events and celebrations.</p>
+                    <div class="service-features">
+                        <h4>Complete Package:</h4>
+                        <ul>
+                            <li>Stage & backdrop fabrication</li>
+                            <li>Sound, lighting & AV systems</li>
+                            <li>AC & climate control</li>
+                            <li>Power & electrical setup</li>
+                            <li>Complete décor & furniture</li>
+                            <li>Event management services</li>
+                        </ul>
+                    </div>
+                    <div class="service-specs">
+                        <span><i class="fas fa-users"></i> 50-5000 capacity</span>
+                        <span><i class="fas fa-calendar-check"></i> Full coordination</span>
+                    </div>
+                    <a href="contact.html" class="service-btn">Plan Event</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <span class="sub-head">Service Process</span>
+                <h2>How We Work</h2>
+            </div>
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h4>Consultation & Assessment</h4>
+                        <p>We begin with detailed consultation to understand your requirements, site conditions, and project timeline.</p>
+                        <div class="step-features">
+                            <span><i class="fas fa-handshake"></i> Free consultation</span>
+                            <span><i class="fas fa-map-marked-alt"></i> Site survey</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h4>Design & Engineering</h4>
+                        <p>Our engineering team creates custom designs with 3D modeling, structural calculations, and detailed specifications.</p>
+                        <div class="step-features">
+                            <span><i class="fas fa-drafting-compass"></i> 3D CAD design</span>
+                            <span><i class="fas fa-calculator"></i> Structural analysis</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h4>Manufacturing & Quality Control</h4>
+                        <p>All components are manufactured to German standards with rigorous quality control and testing procedures.</p>
+                        <div class="step-features">
+                            <span><i class="fas fa-industry"></i> German standards</span>
+                            <span><i class="fas fa-check-double"></i> Quality testing</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h4>Installation & Handover</h4>
+                        <p>Expert installation teams ensure perfect setup with final testing, training, and comprehensive project handover.</p>
+                        <div class="step-features">
+                            <span><i class="fas fa-tools"></i> Professional setup</span>
+                            <span><i class="fas fa-clipboard-check"></i> Final inspection</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="sub-head">Industries We Serve</span>
+                <h2>Sector Expertise</h2>
+            </div>
+            <div class="industry-grid">
+                <div class="industry-card">
+                    <div class="industry-icon"><i class="fas fa-plane"></i></div>
+                    <h4>Aviation & Aerospace</h4>
+                    <p>Aircraft hangars, maintenance facilities, cargo terminals</p>
+                    <div class="industry-projects">120+ projects</div>
+                </div>
+                <div class="industry-card">
+                    <div class="industry-icon"><i class="fas fa-heart"></i></div>
+                    <h4>Weddings & Events</h4>
+                    <p>Wedding venues, corporate events, cultural celebrations</p>
+                    <div class="industry-projects">200+ events</div>
+                </div>
+                <div class="industry-card">
+                    <div class="industry-icon"><i class="fas fa-industry"></i></div>
+                    <h4>Manufacturing</h4>
+                    <p>Production facilities, warehouses, assembly plants</p>
+                    <div class="industry-projects">80+ facilities</div>
+                </div>
+                <div class="industry-card">
+                    <div class="industry-icon"><i class="fas fa-building"></i></div>
+                    <h4>Corporate</h4>
+                    <p>Office complexes, conference centers, business parks</p>
+                    <div class="industry-projects">60+ projects</div>
+                </div>
+                <div class="industry-card">
+                    <div class="industry-icon"><i class="fas fa-hospital"></i></div>
+                    <h4>Healthcare</h4>
+                    <p>Field hospitals, medical camps, emergency facilities</p>
+                    <div class="industry-projects">25+ installations</div>
+                </div>
+                <div class="industry-card">
+                    <div class="industry-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h4>Education & Sports</h4>
+                    <p>Sports complexes, auditoriums, educational facilities</p>
+                    <div class="industry-projects">40+ complexes</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <span class="sub-head">Value Proposition</span>
+                <h2>Why Choose Our Services</h2>
+            </div>
+            <div class="value-grid">
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-flag"></i></div>
+                    <h4>German Engineering Standards</h4>
+                    <p>All our structures meet stringent German quality standards and international safety norms.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-clock"></i></div>
+                    <h4>Rapid Deployment</h4>
+                    <p>Quick turnaround times with efficient project management and streamlined processes.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-map-marked-alt"></i></div>
+                    <h4>PAN-India Coverage</h4>
+                    <p>Service network spanning 50+ cities with local teams and regional expertise.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-headset"></i></div>
+                    <h4>24/7 Support</h4>
+                    <p>Round-the-clock technical support and maintenance services for peace of mind.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-recycle"></i></div>
+                    <h4>Sustainable Solutions</h4>
+                    <p>Eco-friendly materials and energy-efficient designs with minimal environmental impact.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h4>Comprehensive Warranty</h4>
+                    <p>Extended warranty coverage with preventive maintenance and repair services.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: var(--navy-900); color: var(--white);">
+        <div class="container">
+            <div class="section-header">
+                <span class="sub-head" style="color: var(--blue-400);">Ready to Start?</span>
+                <h2 style="color: var(--white);">Get Your Project Quote</h2>
+                <p style="color: var(--slate-300); max-width: 600px; margin: 0 auto;">Contact our experts today for a detailed consultation and customized quote for your infrastructure needs.</p>
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="contact.html" class="btn-primary" style="margin-right: 15px;">Contact Us</a>
+                <a href="tel:+918838962639" class="btn-secondary">Call Now: +91 8838962639</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleMobileMenu() {
+            const nav = document.getElementById('mobileNav');
+            nav.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileNav = document.getElementById('mobileNav');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (!mobileNav.contains(event.target) && !menuBtn.contains(event.target)) {
+                mobileNav.classList.remove('active');
+            }
+        });
+
+        // Close mobile menu when window is resized to desktop
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 900) {
+                document.getElementById('mobileNav').classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

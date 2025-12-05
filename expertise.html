@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Expertise | JP Enterprises - German Engineering Excellence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --navy-900: #020617;
+            --navy-800: #0f172a;
+            --blue-600: #2563eb;
+            --blue-400: #60a5fa;
+            --white: #ffffff;
+            --slate-100: #f1f5f9;
+            --slate-300: #cbd5e1;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --gradient-hero: linear-gradient(135deg, var(--navy-900) 0%, #1e3a8a 100%);
+            --shadow-card: 0 10px 30px -10px rgba(37, 99, 235, 0.15);
+            --shadow-hover: 0 20px 40px -10px rgba(37, 99, 235, 0.25);
+            --container-width: 1200px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--white); color: var(--text-dark); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; line-height: 1.2; }
+        .container { max-width: var(--container-width); margin: 0 auto; padding: 0 24px; }
+
+        /* HEADER */
+        header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--slate-100); position: sticky; top: 0; z-index: 1000; padding: 10px 0; }
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.4rem; color: var(--navy-900); letter-spacing: -0.02em; display: flex; align-items: center; gap: 8px; }
+        .logo i { color: var(--blue-600); }
+        nav ul { display: flex; list-style: none; gap: 28px; }
+        nav a { text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 0.9rem; transition: color 0.3s ease; }
+        nav a:hover, nav a.active { color: var(--blue-600); }
+        .cta-btn { background: var(--navy-900); color: var(--white); padding: 10px 20px; border-radius: 4px; text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: all 0.3s ease; border: 1px solid var(--navy-900); }
+        .cta-btn:hover { background: var(--blue-600); border-color: var(--blue-600); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); }
+        .mobile-menu-btn { display: none; font-size: 1.4rem; background: none; border: none; cursor: pointer; color: var(--navy-900); }
+        .mobile-nav { display: none; }
+
+        /* PAGE HERO */
+        .page-hero { position: relative; background: var(--gradient-hero); padding: 100px 0 80px; color: var(--white); overflow: hidden; text-align: center; }
+        .page-hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; }
+        .hero-content { position: relative; z-index: 2; }
+        .hero-tag { display: inline-block; background: rgba(37, 99, 235, 0.2); border: 1px solid rgba(96, 165, 250, 0.3); color: var(--blue-400); padding: 5px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: 600; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .page-hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 15px; letter-spacing: -0.03em; }
+        .page-hero p { font-size: 1.15rem; color: var(--slate-300); max-width: 700px; font-weight: 300; margin: 0 auto; }
+
+        /* SECTIONS */
+        .section { padding: 60px 0; }
+        .section-header { margin-bottom: 50px; text-align: center; }
+        .sub-head { color: var(--blue-600); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.8rem; margin-bottom: 8px; display: block; }
+        .section h2 { font-size: 2.2rem; color: var(--navy-900); margin-bottom: 15px; font-weight: 700; }
+        .bg-light { background: var(--slate-100); }
+        .grid-split { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .text-block p { color: var(--text-light); margin-bottom: 20px; font-size: 1rem; }
+
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .expertise-card { background: var(--white); padding: 30px 25px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.05); transition: all 0.4s ease; position: relative; top: 0; }
+        .expertise-card:hover { top: -5px; box-shadow: var(--shadow-hover); border-color: var(--blue-600); }
+        .expertise-icon { width: 60px; height: 60px; background: rgba(37, 99, 235, 0.1); color: var(--blue-600); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 20px; transition: 0.3s; }
+        .expertise-card:hover .expertise-icon { background: var(--blue-600); color: var(--white); }
+        .expertise-card h3 { font-size: 1.2rem; margin-bottom: 15px; color: var(--navy-900); font-weight: 600; }
+        .expertise-card p { color: var(--text-light); font-size: 0.9rem; margin-bottom: 15px; }
+        .expertise-list { list-style: none; color: var(--text-light); }
+        .expertise-list li { padding: 4px 0; position: relative; padding-left: 20px; font-size: 0.85rem; }
+        .expertise-list li:before { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; left: 0; color: var(--blue-600); }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .feature-card { background: var(--white); padding: 25px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.05); text-align: center; transition: all 0.4s ease; }
+        .feature-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); border-color: var(--blue-600); }
+        .feature-icon { width: 50px; height: 50px; background: rgba(37, 99, 235, 0.1); color: var(--blue-600); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin: 0 auto 15px; }
+        .feature-card h4 { font-size: 1.1rem; color: var(--navy-900); margin-bottom: 10px; font-weight: 600; }
+        .feature-card p { color: var(--text-light); font-size: 0.85rem; }
+
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 40px; }
+        .stat-card { text-align: center; padding: 20px 15px; border-right: 1px solid var(--slate-300); }
+        .stat-card:last-child { border: none; }
+        .stat-number { font-size: 2.5rem; font-weight: 800; color: var(--blue-600); font-family: 'Outfit', sans-serif; line-height: 1; margin-bottom: 8px; }
+        .stat-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-light); font-weight: 600; }
+
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+        .project-card { background: var(--navy-900); color: var(--white); padding: 30px; border-radius: 8px; transition: all 0.3s ease; }
+        .project-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+        .project-icon { width: 50px; height: 50px; background: rgba(96, 165, 250, 0.2); color: var(--blue-400); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 15px; }
+        .project-card h4 { font-size: 1.2rem; margin-bottom: 10px; font-weight: 600; }
+        .project-details { color: var(--slate-300); font-size: 0.9rem; }
+        .project-details p { margin-bottom: 8px; }
+        .project-details strong { color: var(--white); }
+
+        .certification-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .cert-badge { background: var(--white); padding: 20px; border-radius: 8px; text-align: center; border: 2px solid var(--slate-100); transition: all 0.3s ease; }
+        .cert-badge:hover { border-color: var(--blue-600); transform: translateY(-3px); }
+        .cert-badge i { font-size: 2rem; color: var(--blue-600); margin-bottom: 10px; }
+        .cert-badge h4 { font-size: 1rem; color: var(--navy-900); margin-bottom: 5px; font-weight: 600; }
+        .cert-badge p { font-size: 0.8rem; color: var(--text-light); }
+
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 900px) {
+            .page-hero h1 { font-size: 2.2rem; }
+            .grid-split { grid-template-columns: 1fr; }
+            .stat-card { border-right: none; border-bottom: 1px solid var(--slate-300); padding-bottom: 15px; }
+            .nav-desktop { display: none; }
+            .mobile-menu-btn { display: block; }
+            .mobile-nav { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: white; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+            .mobile-nav.active { display: block; }
+            .mobile-nav ul { flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav-wrapper">
+            <div class="logo"><i class="fas fa-layer-group"></i> JP ENTERPRISES</div>
+            <nav class="nav-desktop">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="expertise.html" class="active">Expertise</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div style="display: flex; gap: 15px; align-items: center;">
+                <a href="quote.html" class="cta-btn nav-desktop">Request Quote</a>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+        <nav class="mobile-nav" id="mobileNav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="expertise.html">Expertise</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="quote.html" style="color: var(--blue-600); font-weight: 700;">Request Quote</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-hero">
+        <div class="container hero-content">
+            <span class="hero-tag"><i class="fas fa-cogs"></i> Technical Excellence</span>
+            <h1>Engineering Expertise That Delivers</h1>
+            <p>Discover our comprehensive technical capabilities in German hangar structures, pre-fabricated buildings, and turnkey event infrastructure solutions across India.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="sub-head">Core Competencies</span>
+                <h2>Technical Expertise Areas</h2>
+            </div>
+            <div class="card-grid">
+                <div class="expertise-card">
+                    <div class="expertise-icon"><i class="fas fa-warehouse"></i></div>
+                    <h3>German Hangar Systems</h3>
+                    <p>Premium aluminum hangar structures engineered to German standards with advanced climate control and customization options.</p>
+                    <ul class="expertise-list">
+                        <li>6m to 50m width configurations</li>
+                        <li>Scalable up to 300m length</li>
+                        <li>100% clear-span design</li>
+                        <li>Weather-resistant materials</li>
+                        <li>Custom branding integration</li>
+                    </ul>
+                </div>
+
+                <div class="expertise-card">
+                    <div class="expertise-icon"><i class="fas fa-hammer"></i></div>
+                    <h3>Pre-Fabricated Structures</h3>
+                    <p>Rapid deployment tubular structures for temporary and semi-permanent industrial and commercial applications.</p>
+                    <ul class="expertise-list">
+                        <li>GI sheet roofing systems</li>
+                        <li>1,600 to 2,00,000+ sq.ft capacity</li>
+                        <li>Modular construction approach</li>
+                        <li>Quick assembly methods</li>
+                        <li>Relocatable designs</li>
+                    </ul>
+                </div>
+
+                <div class="expertise-card">
+                    <div class="expertise-icon"><i class="fas fa-cube"></i></div>
+                    <h3>Temporary Installations</h3>
+                    <p>Custom-designed temporary structures for specialized applications including dining, accommodation, and industrial use.</p>
+                    <ul class="expertise-list">
+                        <li>Dining & kitchen facilities</li>
+                        <li>Labor accommodation units</li>
+                        <li>Industrial enclosures</li>
+                        <li>Custom tarpaulin solutions</li>
+                        <li>Utility integration</li>
+                    </ul>
+                </div>
+
+                <div class="expertise-card">
+                    <div class="expertise-icon"><i class="fas fa-microphone-alt"></i></div>
+                    <h3>Event Infrastructure</h3>
+                    <p>Complete turnkey event solutions including stage fabrication, lighting, sound, and comprehensive event management.</p>
+                    <ul class="expertise-list">
+                        <li>Stage & backdrop design</li>
+                        <li>Audio-visual integration</li>
+                        <li>Power & lighting systems</li>
+                        <li>Climate control solutions</li>
+                        <li>Complete décor services</li>
+                    </ul>
+                </div>
+
+                <div class="expertise-card">
+                    <div class="expertise-icon"><i class="fas fa-drafting-compass"></i></div>
+                    <h3>Engineering & Design</h3>
+                    <p>Advanced engineering capabilities with CAD design, structural analysis, and custom solution development.</p>
+                    <ul class="expertise-list">
+                        <li>3D CAD modeling</li>
+                        <li>Structural calculations</li>
+                        <li>Wind load analysis</li>
+                        <li>Foundation design</li>
+                        <li>Custom engineering</li>
+                    </ul>
+                </div>
+
+                <div class="expertise-card">
+                    <div class="expertise-icon"><i class="fas fa-truck"></i></div>
+                    <h3>Logistics & Installation</h3>
+                    <p>Comprehensive project management from transportation to on-site installation with experienced technical teams.</p>
+                    <ul class="expertise-list">
+                        <li>PAN-India logistics</li>
+                        <li>Certified installation teams</li>
+                        <li>Project management</li>
+                        <li>Quality assurance</li>
+                        <li>After-sales support</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Engineers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Industries Served</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Projects Delivered</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <span class="sub-head">Technical Capabilities</span>
+                <h2>Advanced Engineering Features</h2>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-wind"></i></div>
+                    <h4>Wind Resistance</h4>
+                    <p>Structures designed to withstand wind speeds up to 180 km/h with advanced anchoring systems.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-thermometer-half"></i></div>
+                    <h4>Climate Control</h4>
+                    <p>Advanced HVAC integration with temperature and humidity control for optimal indoor environments.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-fire-extinguisher"></i></div>
+                    <h4>Fire Safety</h4>
+                    <p>Fire-resistant materials and comprehensive safety systems meeting international safety standards.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                    <h4>Power Integration</h4>
+                    <p>Complete electrical systems with load distribution, emergency power, and smart control systems.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h4>Waterproofing</h4>
+                    <p>Advanced waterproofing technologies ensuring complete weather protection in all conditions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-expand-arrows-alt"></i></div>
+                    <h4>Modular Design</h4>
+                    <p>Flexible modular systems allowing for easy expansion, reconfiguration, and relocation.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-leaf"></i></div>
+                    <h4>Eco-Friendly</h4>
+                    <p>Sustainable materials and energy-efficient designs minimizing environmental impact.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-tools"></i></div>
+                    <h4>Quick Assembly</h4>
+                    <p>Engineered for rapid deployment with minimal on-site work and reduced installation time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="sub-head">Industry Applications</span>
+                <h2>Sector-Specific Solutions</h2>
+            </div>
+            <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-industry"></i></div>
+                    <h4>Industrial & Manufacturing</h4>
+                    <div class="project-details">
+                        <p><strong>Applications:</strong> Warehousing, production facilities, storage units</p>
+                        <p><strong>Specifications:</strong> Heavy-duty structures, crane integration, specialized ventilation</p>
+                        <p><strong>Industries:</strong> Automotive, pharmaceuticals, logistics, steel</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-heart"></i></div>
+                    <h4>Weddings & Events</h4>
+                    <div class="project-details">
+                        <p><strong>Applications:</strong> Wedding venues, receptions, cultural events</p>
+                        <p><strong>Specifications:</strong> Elegant designs, climate control, lighting integration</p>
+                        <p><strong>Capacity:</strong> 50 to 5,000+ guests with customizable layouts</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-building"></i></div>
+                    <h4>Corporate & Government</h4>
+                    <div class="project-details">
+                        <p><strong>Applications:</strong> Conferences, exhibitions, official events</p>
+                        <p><strong>Specifications:</strong> Professional aesthetics, AV integration, security features</p>
+                        <p><strong>Clients:</strong> Government agencies, multinational corporations</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-plane"></i></div>
+                    <h4>Aviation & Defense</h4>
+                    <div class="project-details">
+                        <p><strong>Applications:</strong> Aircraft hangars, maintenance facilities, storage</p>
+                        <p><strong>Specifications:</strong> Extra-large spans, security compliance, specialized access</p>
+                        <p><strong>Standards:</strong> Military-grade quality, defense specifications</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h4>Education & Sports</h4>
+                    <div class="project-details">
+                        <p><strong>Applications:</strong> Sports complexes, auditoriums, temporary classrooms</p>
+                        <p><strong>Specifications:</strong> Large clear spans, acoustic treatment, safety features</p>
+                        <p><strong>Features:</strong> Multi-purpose designs, quick reconfiguration</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-hospital"></i></div>
+                    <h4>Healthcare & Emergency</h4>
+                    <div class="project-details">
+                        <p><strong>Applications:</strong> Field hospitals, medical camps, emergency shelters</p>
+                        <p><strong>Specifications:</strong> Hygienic materials, infection control, rapid deployment</p>
+                        <p><strong>Compliance:</strong> Medical standards, emergency response protocols</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <span class="sub-head">Quality Assurance</span>
+                <h2>Certifications & Standards</h2>
+            </div>
+            <div class="certification-grid">
+                <div class="cert-badge">
+                    <i class="fas fa-certificate"></i>
+                    <h4>ISO 9001:2015</h4>
+                    <p>Quality Management Systems</p>
+                </div>
+                <div class="cert-badge">
+                    <i class="fas fa-flag"></i>
+                    <h4>DIN 4102</h4>
+                    <p>German Fire Safety Standards</p>
+                </div>
+                <div class="cert-badge">
+                    <i class="fas fa-leaf"></i>
+                    <h4>Green Building</h4>
+                    <p>Environmental Compliance</p>
+                </div>
+                <div class="cert-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>IS Codes</h4>
+                    <p>Indian Safety Standards</p>
+                </div>
+                <div class="cert-badge">
+                    <i class="fas fa-wind"></i>
+                    <h4>Wind Load</h4>
+                    <p>Structural Engineering Certified</p>
+                </div>
+                <div class="cert-badge">
+                    <i class="fas fa-fire-extinguisher"></i>
+                    <h4>Fire Safety</h4>
+                    <p>Fire Protection Systems</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleMobileMenu() {
+            const nav = document.getElementById('mobileNav');
+            nav.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileNav = document.getElementById('mobileNav');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (!mobileNav.contains(event.target) && !menuBtn.contains(event.target)) {
+                mobileNav.classList.remove('active');
+            }
+        });
+
+        // Close mobile menu when window is resized to desktop
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 900) {
+                document.getElementById('mobileNav').classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

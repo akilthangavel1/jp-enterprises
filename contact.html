@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - JP Enterprises</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --navy-900: #020617;
+            --blue-600: #2563eb;
+            --blue-400: #60a5fa;
+            --white: #ffffff;
+            --slate-100: #f1f5f9;
+            --slate-300: #cbd5e1;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --gradient-hero: linear-gradient(135deg, var(--navy-900) 0%, #1e3a8a 100%);
+            --shadow-card: 0 10px 30px -10px rgba(37, 99, 235, 0.15);
+            --shadow-hover: 0 20px 40px -10px rgba(37, 99, 235, 0.25);
+            --container-width: 1200px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--white); color: var(--text-dark); line-height: 1.6; }
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; line-height: 1.2; }
+        .container { max-width: var(--container-width); margin: 0 auto; padding: 0 24px; }
+        
+        /* HEADER */
+        header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--slate-100); position: sticky; top: 0; z-index: 1000; padding: 10px 0; }
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.4rem; color: var(--navy-900); display: flex; align-items: center; gap: 8px; }
+        .logo i { color: var(--blue-600); }
+        nav ul { display: flex; list-style: none; gap: 28px; }
+        nav a { text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 0.9rem; transition: color 0.3s ease; }
+        nav a:hover, nav a.active { color: var(--blue-600); }
+        .cta-btn { background: var(--navy-900); color: var(--white); padding: 10px 20px; border-radius: 4px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; }
+        .cta-btn:hover { background: var(--blue-600); transform: translateY(-2px); }
+        .mobile-menu-btn { display: none; font-size: 1.4rem; background: none; border: none; cursor: pointer; }
+        .mobile-nav { display: none; }
+        
+        /* HERO */
+        .page-hero { position: relative; background: var(--gradient-hero); padding: 100px 0 80px; color: var(--white); text-align: center; }
+        .page-hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 15px; }
+        .page-hero p { font-size: 1.15rem; color: var(--slate-300); max-width: 700px; margin: 0 auto; }
+        
+        /* SECTIONS */
+        .section { padding: 60px 0; }
+        .section h2 { font-size: 2.2rem; color: var(--navy-900); margin-bottom: 15px; font-weight: 700; }
+        .bg-light { background: var(--slate-100); }
+        
+        /* CARDS */
+        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .contact-card { background: var(--white); padding: 30px 25px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.05); transition: all 0.4s ease; text-align: center; }
+        .contact-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); border-color: var(--blue-600); }
+        .contact-icon { width: 60px; height: 60px; background: rgba(37, 99, 235, 0.1); color: var(--blue-600); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 20px; }
+        .contact-card:hover .contact-icon { background: var(--blue-600); color: var(--white); }
+        .contact-card h3 { font-size: 1.2rem; margin-bottom: 15px; color: var(--navy-900); }
+        .contact-details { color: var(--text-light); font-size: 0.9rem; }
+        .contact-details p { margin-bottom: 8px; }
+        .contact-link { color: var(--blue-600); text-decoration: none; }
+        
+        /* FORMS */
+        .form-container { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+        .contact-form { background: var(--white); padding: 40px; border-radius: 8px; box-shadow: var(--shadow-card); }
+        .form-group { margin-bottom: 25px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--navy-900); }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid var(--slate-300); border-radius: 4px; }
+        .submit-btn { width: 100%; background: var(--navy-900); color: var(--white); padding: 15px; border: none; border-radius: 4px; font-weight: 600; cursor: pointer; }
+        
+        /* LOCATIONS */
+        .locations-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .location-card { background: var(--navy-900); color: var(--white); padding: 30px 25px; border-radius: 8px; text-align: center; }
+        .location-icon { width: 60px; height: 60px; background: rgba(96, 165, 250, 0.2); color: var(--blue-400); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 20px; }
+        
+        /* SOCIAL */
+        .social-section { background: var(--navy-900); color: var(--white); padding: 60px 0; }
+        .social-buttons { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .social-btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; border-radius: 4px; text-decoration: none; color: var(--white); font-weight: 600; }
+        
+        @media (max-width: 900px) {
+            .nav-desktop { display: none; }
+            .mobile-menu-btn { display: block; }
+            .mobile-nav { position: absolute; top: 100%; left: 0; width: 100%; background: white; padding: 20px; }
+            .mobile-nav ul { flex-direction: column; gap: 15px; }
+            .form-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav-wrapper">
+            <div class="logo"><i class="fas fa-layer-group"></i> JP ENTERPRISES</div>
+            <nav class="nav-desktop">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="expertise.html">Expertise</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+            </nav>
+            <div style="display: flex; gap: 15px; align-items: center;">
+                <a href="quote.html" class="cta-btn nav-desktop">Request Quote</a>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+        <nav class="mobile-nav" id="mobileNav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="expertise.html">Expertise</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="quote.html" style="color: var(--blue-600); font-weight: 700;">Request Quote</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-hero">
+        <div class="container hero-content">
+            <span class="hero-tag"><i class="fas fa-phone-alt"></i> Professional Support Available</span>
+            <h1>Contact JP Enterprises</h1>
+            <p>Get in touch with our team of experts for consultations, quotes, and project discussions across India.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="sub-head">Contact Information</span>
+                <h2>How to Reach Us</h2>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                    <h3>Phone Numbers</h3>
+                    <div class="contact-details">
+                        <p><strong>Primary:</strong> <a href="tel:+918838962639" class="contact-link">+91 8838962639</a></p>
+                        <p><strong>Secondary:</strong> <a href="tel:+919159441242" class="contact-link">+91 9159441242</a></p>
+                        <p><strong>Business Hours:</strong> Mon-Sat 9:00 AM - 7:00 PM</p>
+                        <p><strong>Emergency Support:</strong> 24/7 Available</p>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <h3>Email Addresses</h3>
+                    <div class="contact-details">
+                        <p><strong>General Inquiries:</strong><br><a href="mailto:jpenterprisesv@gmail.com" class="contact-link">jpenterprisesv@gmail.com</a></p>
+                        <p><strong>Project Quotes:</strong><br><a href="mailto:quotes@jpenterprises.com" class="contact-link">quotes@jpenterprises.com</a></p>
+                        <p><strong>Support:</strong><br><a href="mailto:support@jpenterprises.com" class="contact-link">support@jpenterprises.com</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <h3>Service Areas</h3>
+                    <div class="contact-details">
+                        <p><strong>Coverage:</strong> PAN-India Operations</p>
+                        <p><strong>Cities Served:</strong> 50+ Major Cities</p>
+                        <p><strong>Primary Markets:</strong> Mumbai, Delhi, Bangalore, Chennai, Hyderabad, Pune</p>
+                        <p><strong>Regional Offices:</strong> North, South, East, West India</p>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="fas fa-clock"></i></div>
+                    <h3>Business Hours</h3>
+                    <div class="contact-details">
+                        <p><strong>Monday - Friday:</strong> 9:00 AM - 7:00 PM</p>
+                        <p><strong>Saturday:</strong> 10:00 AM - 5:00 PM</p>
+                        <p><strong>Sunday:</strong> Emergency Only</p>
+                        <p><strong>Response Time:</strong> Within 2 hours during business hours</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-light">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-intro">
+                    <span class="sub-head">Get In Touch</span>
+                    <h2>Send Us a Message</h2>
+                    <p>Have a project in mind? Need technical consultation? Want to discuss your infrastructure requirements? Fill out the form and our experts will get back to you promptly.</p>
+                    
+                    <div class="response-time">
+                        <h4>Our Response Commitment</h4>
+                        <ul>
+                            <li>Urgent requests: Within 1 hour</li>
+                            <li>General inquiries: Within 2 hours</li>
+                            <li>Quote requests: Within 4 hours</li>
+                            <li>Technical support: 24/7 availability</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <form class="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="company">Company/Organization</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Project Location</label>
+                            <input type="text" id="location" name="location" placeholder="City, State">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="inquiry">Inquiry Type *</label>
+                        <select id="inquiry" name="inquiry" required>
+                            <option value="">Select inquiry type</option>
+                            <option value="quote">Request Quote</option>
+                            <option value="consultation">Technical Consultation</option>
+                            <option value="partnership">Partnership Opportunity</option>
+                            <option value="support">Technical Support</option>
+                            <option value="general">General Information</option>
+                            <option value="careers">Career Inquiries</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="projectType">Project Type</label>
+                        <select id="projectType" name="projectType">
+                            <option value="">Select project type</option>
+                            <option value="hangar">German Hangar Structure</option>
+                            <option value="prefab">Pre-fabricated Building</option>
+                            <option value="temporary">Temporary Installation</option>
+                            <option value="event">Event Infrastructure</option>
+                            <option value="industrial">Industrial Facility</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Project Details / Message *</label>
+                        <textarea id="message" name="message" placeholder="Please provide details about your project requirements, timeline, budget range, and any specific needs..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="sub-head">Regional Coverage</span>
+                <h2>Regional Operations</h2>
+            </div>
+            
+            <div class="locations-grid">
+                <div class="location-card">
+                    <div class="location-icon"><i class="fas fa-building"></i></div>
+                    <h4>Northern Region</h4>
+                    <div class="location-details">
+                        <p><strong>Coverage:</strong> Delhi, Punjab, Haryana, UP, Rajasthan</p>
+                        <p><strong>Specialization:</strong> Corporate Events, Government Projects</p>
+                        <p><strong>Contact:</strong> +91 8838962639</p>
+                    </div>
+                </div>
+
+                <div class="location-card">
+                    <div class="location-icon"><i class="fas fa-laptop-code"></i></div>
+                    <h4>Southern Region</h4>
+                    <div class="location-details">
+                        <p><strong>Coverage:</strong> Bangalore, Chennai, Hyderabad, Kerala</p>
+                        <p><strong>Specialization:</strong> Tech Campus, Industrial Projects</p>
+                        <p><strong>Contact:</strong> +91 9159441242</p>
+                    </div>
+                </div>
+
+                <div class="location-card">
+                    <div class="location-icon"><i class="fas fa-anchor"></i></div>
+                    <h4>Western Region</h4>
+                    <div class="location-details">
+                        <p><strong>Coverage:</strong> Mumbai, Pune, Gujarat, Goa</p>
+                        <p><strong>Specialization:</strong> Luxury Events, Marine Projects</p>
+                        <p><strong>Contact:</strong> +91 8838962639</p>
+                    </div>
+                </div>
+
+                <div class="location-card">
+                    <div class="location-icon"><i class="fas fa-mountain"></i></div>
+                    <h4>Eastern Region</h4>
+                    <div class="location-details">
+                        <p><strong>Coverage:</strong> Kolkata, Bhubaneswar, Northeast</p>
+                        <p><strong>Specialization:</strong> Cultural Events, Mining Projects</p>
+                        <p><strong>Contact:</strong> +91 9159441242</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="social-section">
+        <div class="container">
+            <div class="social-content">
+                <span class="sub-head" style="color: var(--blue-400);">Stay Connected</span>
+                <h2>Connect With Us</h2>
+                <p>Follow our journey, see our latest projects, and stay updated with JP Enterprises on social media</p>
+            </div>
+            
+            <div class="social-buttons">
+                <a href="#" class="social-btn instagram">
+                    <i class="fab fa-instagram"></i>
+                    Follow on Instagram
+                </a>
+                <a href="#" class="social-btn youtube">
+                    <i class="fab fa-youtube"></i>
+                    Subscribe on YouTube
+                </a>
+                <a href="#" class="social-btn facebook">
+                    <i class="fab fa-facebook"></i>
+                    Like on Facebook
+                </a>
+                <a href="#" class="social-btn linkedin">
+                    <i class="fab fa-linkedin"></i>
+                    Connect on LinkedIn
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <span class="sub-head">Service Network</span>
+                <h2>Our Reach Across India</h2>
+            </div>
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <i class="fas fa-map-marked-alt"></i> Interactive Service Area Map
+                </div>
+                <div class="map-info">
+                    <h3>Our Service Network</h3>
+                    <p>With operations spanning across India, we're strategically positioned to serve your infrastructure needs wherever you are. Our network covers 50+ cities with local teams ensuring personalized service and rapid response times.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleMobileMenu() {
+            const nav = document.getElementById('mobileNav');
+            nav.classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(event) {
+            const mobileNav = document.getElementById('mobileNav');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (!mobileNav.contains(event.target) && !menuBtn.contains(event.target)) {
+                mobileNav.classList.remove('active');
+            }
+        });
+
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 900) {
+                document.getElementById('mobileNav').classList.remove('active');
+            }
+        });
+
+        // Form submission handler
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const formObject = {};
+            formData.forEach((value, key) => {
+                formObject[key] = value;
+            });
+            
+            // Show success message (in a real application, you would send this to a server)
+            alert('Thank you for your message! We will get back to you within 2 hours during business hours.');
+            
+            // Reset form
+            this.reset();
+            
+            console.log('Form submission:', formObject);
+        });
+    </script>
+</body>
+</html>
